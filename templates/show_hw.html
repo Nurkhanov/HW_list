@@ -1,0 +1,23 @@
+{% extends 'index.html'%}
+{% block title %}Home page{% endblock %}
+
+{% block content %}
+
+{% for i in hw_objects %}
+
+<div class="panel">
+	<p>{{ i.hw_name }}</p>
+	<p>{{ i.hw_info }}</p>
+</div>
+
+{% endfor %}
+
+<div class="form-popup" id="myForm">
+	<form method="post" class="form-container">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" name="New HW">
+	</form>
+</div>
+
+{% endblock %}
