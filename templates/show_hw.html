@@ -12,12 +12,17 @@
 
 {% endfor %}
 
+<button class="open-button" onclick="openForm()">Open Form</button>
 <div class="form-popup" id="myForm">
-	<form method="post" class="form-container">
+  <form method="post" class="form-container">
+    <h1>Login</h1>
+
 		{% csrf_token %}
 		{{ form.as_p }}
-		<input type="submit" name="New HW">
-	</form>
+	
+    <button type="submit" class="btn">Login</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
 </div>
 
 {% endblock %}
