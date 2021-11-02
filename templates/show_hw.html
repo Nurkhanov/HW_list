@@ -6,8 +6,8 @@
 {% for i in hw_objects %}
 
 <div class="panel">
-	<p>{{ i.hw_name }}</p>
-	<p>{{ i.hw_info }}</p>
+	<p>{{ i.HW_name }}</p>
+	<p>{{ i.HW_info }}</p>
 </div>
 
 {% endfor %}
@@ -15,12 +15,12 @@
 <button class="open-button" onclick="openForm()">Open Form</button>
 <div class="form-popup" id="myForm">
   <form method="post" class="form-container">
-    <h1>Login</h1>
+    <h2>Creating new HW</h2>
 
 		{% csrf_token %}
 		{{ form.as_p }}
 	
-    <button type="submit" class="btn">Login</button>
+    <button type="submit" class="btn">Create</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>

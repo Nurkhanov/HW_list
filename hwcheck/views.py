@@ -8,7 +8,7 @@ from .forms import *
 
 
 # class CreateHW(CreateView):
-
+# """ It is testing Class-based view for forms """
 #     template_name = 'create_hw.html'
 #     form_class = HW_input
 #     success_url = '/'
