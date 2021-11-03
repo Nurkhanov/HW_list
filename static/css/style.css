@@ -1,3 +1,22 @@
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width:80%;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+th, td {
+  text-align: left;
+  padding: 18px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 .top{
 	padding-right:10px;
 	padding-top: 10px;
@@ -31,7 +50,7 @@
     padding: 0px 10px;
   }
   
-{box-sizing: border-box;}
+
 
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
@@ -44,7 +63,7 @@
   position: fixed;
   bottom: 23px;
   right: 28px;
-  width: 280px;
+  width: 250px;
 }
 
 /* The popup form - hidden by default */
@@ -59,9 +78,10 @@
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 300px;
+  max-width: 360px;
   padding: 10px;
   background-color: white;
+  font-size: 15px;
 }
 
 /* Full-width input fields */
