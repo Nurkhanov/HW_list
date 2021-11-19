@@ -7,12 +7,14 @@
 		<tr>
 			<th>Name</th>
 			<th>Course</th>
+			<th>Deadline</th>
 			<th>Info</th>
 		</tr>
 {% for i in hw_objects %}
 		<tr>
 			<td>{{ i.HW_name }}</td>
 			<td>{{ i.HW_course }}</td>
+			<td>{{ i.HW_deadline }}</td>
 			<td>{{ i.HW_info }}</td>
 		</tr>
 {% endfor %}

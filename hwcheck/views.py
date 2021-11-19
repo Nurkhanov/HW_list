@@ -32,8 +32,13 @@ def show_hw(request):
     hw_objects = HW.objects.filter(HW_user = request.user)
     form = HW_input()
 
+    for i in hw_objects:
+        if i.HW_deadline == None:
+            i.HW_deadline = 'No deadline'
+
     if request.method == 'POST':
         form = HW_input(request.POST, request.FILES or None)
+        
         if form.is_valid():
             form.instance.HW_user = request.user
             form.save()

@@ -6,7 +6,7 @@ class HW_input(ModelForm):
 
 	class Meta:
 		model = HW
-		fields = ('HW_name','HW_info','HW_course',)
+		fields = ('HW_name','HW_info','HW_course','HW_deadline')
 
 class Course_input(ModelForm):
 
