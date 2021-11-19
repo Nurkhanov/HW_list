@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
@@ -10,30 +10,57 @@ from .forms import *
 # Create your views here.
 
 
-
-# class CreateHW(CreateView):
-# """ It is testing Class-based view for forms """
-#     template_name = 'create_hw.html'
-#     form_class = HW_input
-#     success_url = '/'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['HW'] = HW.objects.all()
-#         return context
-
-#     def get(self,request):
-#         hw_objects = HW.objects.all()
-#         context = {'hw_objects': hw_objects,}
-#         return render(request, 'show_hw.html',context)
-
-
+@login_required(login_url = 'log_in')
 def home(request):
-    return render(request, template_name='index.html')
+    return render(request, template_name='home.html')
 
 
+@login_required(login_url = 'log_in')
 def change_hw(request):
     return render(request, template_name='change_hw.html')
+
+
+@login_required(login_url = 'log_in')
+def log_out(request):
+    logout(request)
+    return redirect('log_in')
+
+
+@login_required(login_url = 'log_in')
+def show_hw(request):
+
+    hw_objects = HW.objects.filter(HW_user = request.user)
+    form = HW_input()
+
+    if request.method == 'POST':
+        form = HW_input(request.POST, request.FILES or None)
+        if form.is_valid():
+            form.instance.HW_user = request.user
+            form.save()
+
+        return redirect('show_hw')
+
+    context = {'hw_objects': hw_objects,'form': form}
+    return render(request, 'show_hw.html',context)
+
+
+@login_required
+def create_course(request):
+
+    form = Course_input()
+    course_objects = Course.objects.all()
+
+    if request.method == 'POST':
+
+        form = Course_input(request.POST, request.FILES or None)
+        if form.is_valid():
+            form.instance.course_user = request.user
+            form.save()
+
+        return redirect('create_course')
+
+    context = {'course_objects':course_objects,'form': form}
+    return render(request, 'create_course.html', context)
 
 
 def user_registration(request):
@@ -73,20 +100,3 @@ def log_in(request):
     return render(request, 'log_in.html')
 
 
-@login_required(login_url = 'log_in')
-def show_hw(request):
-
-    form = HW_input()
-    hw_objects = HW.objects.all()
-
-    if request.method == 'POST':
-        form = HW_input(request.POST, request.FILES)
-        if form.is_valid():
-            
-            form.user = request.user
-            form.save()
-
-        return redirect('show_hw')
-
-    context = {'hw_objects': hw_objects,'form': form}
-    return render(request, 'show_hw.html',context)

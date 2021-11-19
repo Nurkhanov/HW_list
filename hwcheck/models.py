@@ -7,6 +7,7 @@ class Course(models.Model):
 
 	course_id = models.IntegerField(primary_key=True)
 	course_name = models.CharField(max_length=80)
+	course_user = models.ForeignKey(User, null=True, on_delete=CASCADE)
 
 	def __str__(self):
 		return self.course_name

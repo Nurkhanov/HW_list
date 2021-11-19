@@ -1,0 +1,33 @@
+{% extends 'index.html'%}
+{% block title %}Home page{% endblock %}
+{% block content %}
+<div class="">
+	<form method="post">
+
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Create</button>
+		
+	</form><p>
+</div>
+<div>
+	<div class="course-table">
+		<table>
+			<tr>
+			<th>Name</th>
+			<th>Id</th>
+			</tr>
+			{% for i in course_objects %}
+			{% if i.course_user == request.user %}
+			<tr>
+			<th>{{ i.course_name }}</th>
+			<th>{{ i.course_id }}</th>
+			</tr>
+			{% endif %}
+			{% endfor %}
+		</table>
+	</div>
+</div>
+
+
+{% endblock %}

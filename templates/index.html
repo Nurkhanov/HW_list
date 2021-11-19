@@ -11,21 +11,26 @@
 
 <body>
 <div class="sidenav">
-		
+	
+	{% if user.is_staff %}
+	<a href="/admin">Admin</a>
+	{% endif %}
+	{% if user.is_authenticated %}	
 	<a href="/">Home</a>
 	<a href="/show_hw">HW list</a>
-	<a href="/admin">Admin</a>
-	<p>
-	<p>
-	<a href="/log_in">Log in</a>
-	<a href="/registration">Sign in</a>
 	
+	<a href="/create_course">Create course</a>
+	<p>
+	<p>
+	<a href="/log_out">Log out</a>
+	{% else %}
+	<a href="/log_in">Log in</a>
+	<a href="/registration">Sign in</a>	
+	{% endif %}
 </div>
 
 <div class="main">
-{% block content %}
-	<h1>This render is working!!!</h1>
-	
+{% block content %}	
 {% endblock %}
 </div>
 <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
