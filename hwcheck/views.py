@@ -30,14 +30,14 @@ def log_out(request):
 def show_hw(request):
 
     hw_objects = HW.objects.filter(HW_user = request.user)
-    form = HW_input()
+    form = HW_input(user = request.user)
 
     for i in hw_objects:
         if i.HW_deadline == None:
             i.HW_deadline = 'No deadline'
 
     if request.method == 'POST':
-        form = HW_input(request.POST, request.FILES or None)
+        form = HW_input(request.POST, request.FILES, user= request.user)
         
         if form.is_valid():
             form.instance.HW_user = request.user
@@ -45,7 +45,9 @@ def show_hw(request):
 
         return redirect('show_hw')
 
-    context = {'hw_objects': hw_objects,'form': form}
+    context = {'hw_objects': hw_objects,
+                'form': form}
+
     return render(request, 'show_hw.html',context)
 
 
@@ -57,7 +59,7 @@ def create_course(request):
 
     if request.method == 'POST':
 
-        form = Course_input(request.POST, request.FILES or None)
+        form = Course_input(request.user,request.POST, request.FILES or None)
         if form.is_valid():
             form.instance.course_user = request.user
             form.save()
@@ -104,4 +106,7 @@ def log_in(request):
 
     return render(request, 'log_in.html')
 
-
+class User_profile():
+    #Custom made profile to change information about user
+    
+    pass

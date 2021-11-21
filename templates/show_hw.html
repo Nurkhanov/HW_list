@@ -9,6 +9,7 @@
 			<th>Course</th>
 			<th>Deadline</th>
 			<th>Info</th>
+			<th>Status</th>
 		</tr>
 {% for i in hw_objects %}
 		<tr>
@@ -16,9 +17,15 @@
 			<td>{{ i.HW_course }}</td>
 			<td>{{ i.HW_deadline }}</td>
 			<td>{{ i.HW_info }}</td>
+			<td>{{ i.HW_status }}</td>
 		</tr>
 {% endfor %}
 	</table>
+<div>
+<input type="number" name="id">
+<button type="submit">Delete</button>	
+
+</div>
 
 </div>
 
