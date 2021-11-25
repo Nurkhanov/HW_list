@@ -32,9 +32,6 @@ class HW(models.Model):
 	def __str__(self):
 		return self.HW_name
 
-	def delete_HW(self, HW_id):
-		return self.objects.filter(HW_id= HW_id).delete()
-
 	class Meta:
 		verbose_name = "ДЗ"
 		verbose_name_plural = "ДЗ"

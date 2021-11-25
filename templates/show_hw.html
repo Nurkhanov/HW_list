@@ -18,14 +18,17 @@
 			<td>{{ i.HW_deadline }}</td>
 			<td>{{ i.HW_info }}</td>
 			<td>{{ i.HW_status }}</td>
+			<td>
+				<form method="put">
+					<button type="submit" class="btn btn-outline-dark"><i class="bi bi-pencil"></i></button>
+				</form>
+				<form method="delete">
+					<button type="submit" class="btn btn-outline-dark"><i class="bi bi-trash"></i></button>
+				</form>
+			</td>
 		</tr>
 {% endfor %}
 	</table>
-<div>
-<input type="number" name="id">
-<button type="submit">Delete</button>	
-
-</div>
 
 </div>
 
