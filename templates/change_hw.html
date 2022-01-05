@@ -1,4 +1,14 @@
 {% extends 'index.html'%}
-{% block title %}Home page{% endblock %}
+{% block title %}Change homework{% endblock %}
 {% block content %}
+<div>
+	<form>
+		{{ csrf_token }}
+		{{ form.as_p }}
+		
+		<button type="submit" class="">Enter</button>
+
+	</form>
+</div>
+
 {% endblock %}

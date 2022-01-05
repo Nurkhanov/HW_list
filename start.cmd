@@ -1,3 +1,0 @@
-echo on
-
-pause

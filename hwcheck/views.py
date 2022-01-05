@@ -16,11 +16,6 @@ def home(request):
 
 
 @login_required(login_url = 'log_in')
-def change_hw(request):
-    return render(request, template_name='change_hw.html')
-
-
-@login_required(login_url = 'log_in')
 def log_out(request):
     logout(request)
     return redirect('log_in')
@@ -37,7 +32,7 @@ def show_hw(request):
             i.HW_deadline = 'No deadline'
 
     if request.method == 'POST':
-        form = HW_input(request.POST, request.FILES, user= request.user)
+        form = HW_input(request.POST, request.FILES)
         
         if form.is_valid():
             form.instance.HW_user = request.user
@@ -51,6 +46,12 @@ def show_hw(request):
     return render(request, 'show_hw.html',context)
 
 
+@login_required(login_url = 'log_in')
+def change_hw(request):
+    
+    return render(request, template_name='change_hw.html')
+
+
 @login_required
 def create_course(request):
 
@@ -59,7 +60,8 @@ def create_course(request):
 
     if request.method == 'POST':
 
-        form = Course_input(request.user,request.POST, request.FILES or None)
+        form = Course_input(request.POST, request.FILES or None)
+
         if form.is_valid():
             form.instance.course_user = request.user
             form.save()
