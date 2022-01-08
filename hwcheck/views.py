@@ -128,7 +128,7 @@ class HwCreateView(FormView,LoginRequiredMixin):
 class HwUpdateView(UpdateView,LoginRequiredMixin):
     model = HW
     template_name = 'crud_base.html'
-    fields = '__all__'
+    fields = ('HW_name','HW_info','HW_course','HW_deadline')
     success_url = reverse_lazy('show_hw')
 
 class HwDeleteView(DeleteView,LoginRequiredMixin):
