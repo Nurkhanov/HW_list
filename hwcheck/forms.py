@@ -11,6 +11,8 @@ class HW_input(ModelForm):
 	def __init__(self,  *args,user= None,  **kwargs,):
 		super(HW_input, self).__init__(*args, **kwargs)
 		self.fields['HW_deadline'].required = False
+		self.fields['HW_deadline'].initial = 'dd/mm/yyyy'
+		self.fields['HW_deadline'].clear = 'dd/mm/yyyy'
 		if user:
 			self.fields['HW_course'].queryset = Course.objects.filter(course_user = user)
 			self.fields['HW_course'].empty_label = 'Select course'
