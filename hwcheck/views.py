@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView, UpdateView,FormView, DeleteView
+from django.urls import reverse_lazy
 
 from .models import *
 from .forms import *
@@ -112,3 +114,24 @@ class User_profile():
     #Custom made profile to change information about user
     
     pass
+
+class HwCreateView(FormView,LoginRequiredMixin):
+    form_class = HW_input
+    template_name = 'crud_base.html'
+    success_url = reverse_lazy('show_hw')
+
+    def form_valid(self,form):
+        form.instance.HW_user = self.request.user
+        form.save()
+        return super(HwCreateView,self).form_valid(form)
+
+class HwUpdateView(UpdateView,LoginRequiredMixin):
+    model = HW
+    template_name = 'crud_base.html'
+    fields = '__all__'
+    success_url = reverse_lazy('show_hw')
+
+class HwDeleteView(DeleteView,LoginRequiredMixin):
+    model = HW
+    template_name = 'crud_delete.html'
+    success_url = reverse_lazy('show_hw')

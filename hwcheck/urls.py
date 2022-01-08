@@ -10,4 +10,8 @@ urlpatterns = [
     path('show_hw/', show_hw, name = 'show_hw'),
     # path('change_hw/', change_hw, name = 'show_hw'),
     path('create_course/', create_course, name = 'create_course'),
+
+    path('crud_create/',HwCreateView.as_view()),
+    path('crud_delete/<int:pk>',HwDeleteView.as_view()),
+    path('crud_update/<int:pk>',HwUpdateView.as_view()),
 ]

@@ -19,12 +19,9 @@
 			<td>{{ i.HW_info }}</td>
 			<td>{{ i.HW_status }}</td>
 			<td>
-				<form method="put">
-					<button type="submit" class="btn btn-outline-dark"><i class="bi bi-pencil"></i></button>
-				</form>
-				<form method="delete">
-					<button type="submit" class="btn btn-outline-dark"><i class="bi bi-trash"></i></button>
-				</form>
+				<button type="submit" onclick= "location.href='/crud_update/{{ i.HW_id }}'" class="btn btn-outline-dark"><i class="bi bi-pencil"></i></button>
+				
+				<button type="submit" onclick="location.href='/crud_delete/{{ i.HW_id }}'" class="btn btn-outline-dark"><i class="bi bi-trash"></i></button>
 			</td>
 		</tr>
 {% endfor %}
