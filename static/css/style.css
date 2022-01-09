@@ -4,8 +4,7 @@ table {
   width:80%;
   border: 1px solid #ddd;
   font-size: 16px;
-  margin-top: 20px;
-  margin-left: 20px;
+
 }
 
 th, td {
@@ -22,18 +21,22 @@ tr:nth-child(even) {
 .topnav {
   background-color: #333;
   overflow: hidden;
-  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
+.topnav .topleft {
+  float: right;
+}
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 18px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 /* Change the color of links on hover */
@@ -82,9 +85,10 @@ tr:nth-child(even) {
   padding: 5px;
 }
 .main {
-  margin-left: 160px; 
-  font-size: 16px; 
-  padding: 0px 10px;
+  margin-left: 15%;
+  font-size: 16px;
+  padding-top: 30px; 
+  
 }
 
 /* Button used to open the contact form - fixed at the bottom of the page */

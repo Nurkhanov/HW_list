@@ -15,20 +15,21 @@
 
 <body>
 	<div class="topnav" id="myTopnav">
- 		{% if user.is_staff %}
-		<a href="/admin">Admin</a>
-		{% endif %}
 		{% if user.is_authenticated %}
- 		<a href="/">Home</a>
-		<a href="/show_hw">HW list</a>
-		<a href="/create_course">Create course</a>
-		<a href="/log_out">Log out</a>
-		{% else %}
-		<a href="/log_in">Log in</a>
-		<a href="/registration">Sign in</a>	
+ 		{% if user.is_staff %}
+			<a href="/admin">Admin</a>
 		{% endif %}
-		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-		<i class="fa fa-bars"></i></a>
+ 			<a href="/">Home</a>
+			<a href="/show_hw">HW list</a>
+			<a href="/create_course">Create course</a>
+			<a class="topleft" href="/log_out">Log out</a>
+		{% else %}
+			<a class="topleft" href="/log_in">Log in</a>
+			<a class="topleft" href="/registration">Sign in</a>	
+		{% endif %}
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+			<i class="fa fa-bars"></i></a>
+		
 	</div>
 
 <div class="main">
