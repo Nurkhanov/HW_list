@@ -20,5 +20,5 @@ class Course_input(ModelForm):
 
 	class Meta:
 		model = Course
-		fields = ('course_name', 'course_id', )
+		fields = ('course_name',)
 		
