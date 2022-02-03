@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,7 +14,7 @@ from .forms import *
 
 @login_required(login_url = 'log_in')
 def home(request):
-    return render(request, template_name='home.html')
+    return render(request, template_name='index.html')
 
 
 @login_required(login_url = 'log_in')
@@ -76,10 +76,10 @@ def create_course(request):
 
 def user_registration(request):
 
-    form = UserCreationForm()
+    form = User_input()
     if request.method == 'POST':
 
-        form = UserCreationForm(request.POST, request.FILES)
+        form = User_input(request.POST, request.FILES)
         if form.is_valid:
 
             form.save()

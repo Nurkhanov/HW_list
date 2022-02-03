@@ -1,5 +1,8 @@
-from django.forms import ModelForm,ModelChoiceField
+from django.forms import ModelForm,ModelChoiceField,EmailField
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from .models import HW, Course
+
 
 
 class HW_input(ModelForm):
@@ -22,3 +25,8 @@ class Course_input(ModelForm):
 		model = Course
 		fields = ('course_name',)
 		
+class User_input(UserCreationForm):
+	email = EmailField()
+	class Meta:
+		model = User
+		fields = ['username','email','password1']
