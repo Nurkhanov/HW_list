@@ -6,9 +6,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
 
 /* style the container */
 .container {
@@ -19,7 +16,7 @@ body {
 } 
 
 /* style inputs and link buttons */
-input,
+.input-cls,
 .btn {
   width: 100%;
   padding: 12px;
@@ -33,19 +30,19 @@ input,
   text-decoration: none; /* remove underline from anchors */
 }
 
-input:hover,
+.input-cls:hover,
 .btn:hover {
   opacity: 1;
 }
 
 /* style the submit button */
-input[type=submit] {
+.input-cls[type=submit] {
   background-color: #04AA6D;
   color: white;
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+.input-cls[type=submit]:hover {
   background-color: #45a049;
 }
 
@@ -101,9 +98,9 @@ input[type=submit]:hover {
     <div class="row">
       <h2 style="text-align:center">Login to enter to the application</h2>
       <div class="col-1">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
+        <input class="input-cls" type="text" name="username" placeholder="Username" required>
+        <input class="input-cls" type="password" name="password" placeholder="Password" required>
+        <input class="input-cls" type="submit" value="Login">
       </div>
       
     </div>
@@ -121,13 +118,12 @@ input[type=submit]:hover {
   </div>
 </div>
 
-</style>
 <form method="post">
 
 	{% csrf_token %}
-	<input type="text" name="username" placeholder="Username" required>
-	<input type="password" name="password" placeholder="Password" required>
-	<input type="submit" value="Login">
+	<input class="input-cls" type="text" name="username" placeholder="Username" required>
+	<input class="input-cls" type="password" name="password" placeholder="Password" required>
+	<input class="input-cls" type="submit" value="Login">
 
 </form>
 {% endblock %}
