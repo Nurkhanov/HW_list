@@ -26,7 +26,7 @@ class HW(models.Model):
 	HW_user = models.ForeignKey(User,null=True, on_delete=CASCADE)
 	HW_info = models.CharField(max_length=255)
 	HW_status = models.BooleanField(default=False)
-	HW_deadline = models.DateField(null=True, help_text='mm/dd/yyyy')
+	HW_deadline = models.DateField(null=True)
 	HW_course = models.ForeignKey(Course,on_delete=CASCADE)
 
 	def __str__(self):

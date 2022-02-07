@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView,FormView, DeleteView
+from django.forms import DateField
 from django.urls import reverse_lazy
 
 from .models import *
@@ -91,13 +92,12 @@ def user_registration(request):
 
 
 def log_in(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    
+    else:
 
-    if request.method == 'POST':
-        if request.user.is_authenticated:
-
-            return redirect('home')
-
-        else:
+        if request.method == 'POST':
 
             username = request.POST['username']
             password = request.POST['password']
@@ -117,7 +117,7 @@ class User_profile():
 
 class HwCreateView(FormView,LoginRequiredMixin):
     form_class = HW_input
-    template_name = 'crud_base.html'
+    template_name = 'crud_edit.html'
     success_url = reverse_lazy('show_hw')
 
     def form_valid(self,form):
@@ -127,8 +127,11 @@ class HwCreateView(FormView,LoginRequiredMixin):
 
 class HwUpdateView(UpdateView,LoginRequiredMixin):
     model = HW
-    template_name = 'crud_base.html'
+    template_name = 'crud_edit.html'
     fields = ('HW_name','HW_info','HW_course','HW_deadline')
+    widgets = {
+                    'HW_deadline': DateInput(attrs={'placeholder':'mm/dd/yyyy'})
+        }
     success_url = reverse_lazy('show_hw')
 
 class HwDeleteView(DeleteView,LoginRequiredMixin):
