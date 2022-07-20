@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -39,13 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'crispy_forms',
-    'debug_toolbar',
 
     'hwcheck',
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,7 +60,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / 'templates' ],
+        'DIRS': [ ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,7 +137,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
+STATICFILES_DIRS = [ ]
 MEDIA_ROOT = [ os.path.join(BASE_DIR,'mediafiles') ]
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
@@ -148,7 +146,4 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-INTERNAL_IPS = [
-
-    "127.0.0.1",
-    ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

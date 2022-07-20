@@ -1,0 +1,106 @@
+{% extends 'base.html'%}
+{% block title %}Home page{% endblock %}
+{% block content %}
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* style the container */
+.container {
+  position: relative;
+  width: 70%;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+} 
+
+/* style inputs and link buttons */
+.input-cls,
+.btn {
+  max-width: 12em;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+.input-cls:hover,
+.btn:hover {
+  opacity: 1;
+}
+
+/* style the submit button */
+.input-cls[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  cursor: pointer;
+}
+
+.input-cls[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.col-1 {
+  float: center;
+  width: 50%;
+  margin: auto;
+  padding: 0 50px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.top-text {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* hide some text on medium and large screens */
+.hide-md-lg {
+  display: none;
+}
+
+/* bottom container */
+
+
+/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-1 {
+    width: 100%;
+    padding: auto;
+  }
+
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <form method="post">
+    {% csrf_token %}
+    <div class="row">
+      <h2 class="top-text" style="text-align:center">Login to enter to the application</h2>
+      <div class="col-1">
+        <input class="input-cls" type="text" name="username" placeholder="Username" required><br>
+        <input class="input-cls" type="password" name="password" placeholder="Password" required><br>
+        <input class="input-cls" type="submit" value="Login">
+        <a href="#" style="color:#ffffff;background-color:#212529 ;" class="btn">Forgot password?</a>
+      </div>
+      
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}

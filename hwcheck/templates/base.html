@@ -8,6 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <style>
+    input {max-width: 12em};
+	</style>
   <title>{% block title %}HWCheck{% endblock %}</title>
 </head>
 
@@ -33,7 +36,7 @@
 	</div>
 
 <div class="main">
-{% block content %}	
+{% block content %}
 {% endblock %}
 </div>
 <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>

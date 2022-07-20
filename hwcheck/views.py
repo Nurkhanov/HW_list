@@ -1,10 +1,11 @@
 from django.shortcuts import render,HttpResponse,redirect
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView,FormView, DeleteView
+from django.forms import DateField
 from django.urls import reverse_lazy
 
 from .models import *
@@ -14,7 +15,7 @@ from .forms import *
 
 @login_required(login_url = 'log_in')
 def home(request):
-    return render(request, template_name='home.html')
+    return render(request, template_name='index.html')
 
 
 @login_required(login_url = 'log_in')
@@ -76,10 +77,10 @@ def create_course(request):
 
 def user_registration(request):
 
-    form = UserCreationForm()
+    form = User_input()
     if request.method == 'POST':
 
-        form = UserCreationForm(request.POST, request.FILES)
+        form = User_input(request.POST, request.FILES)
         if form.is_valid:
 
             form.save()
@@ -91,13 +92,12 @@ def user_registration(request):
 
 
 def log_in(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    
+    else:
 
-    if request.method == 'POST':
-        if request.user.is_authenticated:
-
-            return redirect('home')
-
-        else:
+        if request.method == 'POST':
 
             username = request.POST['username']
             password = request.POST['password']
@@ -117,7 +117,7 @@ class User_profile():
 
 class HwCreateView(FormView,LoginRequiredMixin):
     form_class = HW_input
-    template_name = 'crud_base.html'
+    template_name = 'crud_edit.html'
     success_url = reverse_lazy('show_hw')
 
     def form_valid(self,form):
@@ -127,8 +127,11 @@ class HwCreateView(FormView,LoginRequiredMixin):
 
 class HwUpdateView(UpdateView,LoginRequiredMixin):
     model = HW
-    template_name = 'crud_base.html'
+    template_name = 'crud_edit.html'
     fields = ('HW_name','HW_info','HW_course','HW_deadline')
+    widgets = {
+                    'HW_deadline': DateInput(attrs={'placeholder':'mm/dd/yyyy'})
+        }
     success_url = reverse_lazy('show_hw')
 
 class HwDeleteView(DeleteView,LoginRequiredMixin):
